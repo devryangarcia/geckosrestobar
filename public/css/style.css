@@ -1,0 +1,85 @@
+/* Custom Background Color Utilities */
+.bg-purple {
+  background-color: #6f42c1 !important; /* Bootstrap purple */
+  color: #fff; /* ensures text is readable */
+}
+
+.bg-aqua {
+  background-color: #17a2b8 !important; /* aqua / teal */
+  color: #fff;
+}
+
+.bg-pink {
+  background-color: #e83e8c !important; /* pink */
+  color: #fff;
+}
+
+.bg-orange {
+  background-color: #fd7e14 !important;
+  color: #fff;
+}
+
+.bg-lime {
+  background-color: #a3e635 !important; /* lime green */
+  color: #000;
+}
+
+.bg-teal {
+  background-color: #20c997 !important;
+  color: #fff;
+}
+
+.bg-indigo {
+  background-color: #6610f2 !important;
+  color: #fff;
+}
+
+.bg-gray {
+  background-color: #6c757d !important;
+  color: #fff;
+}
+/* Hover */
+.bg-purple:hover { background-color: #5a32a3 !important; }
+.bg-aqua:hover { background-color: #138496 !important; }
+.bg-pink:hover { background-color: #d63384 !important; }
+
+/* Custom Text Color Utilities */
+.text-purple {
+  color: #6f42c1 !important;
+}
+
+.text-aqua {
+  color: #17a2b8 !important;
+}
+
+.text-pink {
+  color: #e83e8c !important;
+}
+
+.text-orange {
+  color: #fd7e14 !important;
+}
+
+.text-lime {
+  color: #a3e635 !important;
+}
+
+.text-teal {
+  color: #20c997 !important;
+}
+
+.text-indigo {
+  color: #6610f2 !important;
+}
+
+.text-gray {
+  color: #6c757d !important;
+}
+
+
+/* Text Hover */
+.text-purple:hover { color: #5a32a3 !important; }
+.text-aqua:hover { color: #138496 !important; }
+.text-pink:hover { color: #d63384 !important; }
+.text-orange:hover { color: #e8590c !important; }
+
