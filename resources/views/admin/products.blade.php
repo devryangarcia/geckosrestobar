@@ -40,8 +40,13 @@
                                 data-bs-target="#addproducts">
                                 <i class="fa-solid fa-plus"></i> Add Products
                             </button>
-                            <button class="btn btn-danger">Export PDF</button>
-                            <button class="btn btn-primary">Export Excel</button>
+                            <a href="{{ route('products.exportPDFAll') }}" target="_blank"
+                                rel="noopener noreferrer"class="btn btn-danger">
+                                <i class="fa fa-download"></i> Export PDF
+                            </a>
+                            <a href="{{ route('products.exportExcel') }}" target="_blank" rel="noopener noreferrer"class="btn btn-primary">
+                                <i class="fa fa-download"></i> Export Excel
+                            </a>
 
                         </div>
                         <!-- Modal -->

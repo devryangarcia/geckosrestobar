@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\ProductExport;
 use App\Models\Product;
 use App\Models\Category;
 use Storage;
+use PDF;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::paginate(20);
+        $products = Product::paginate(10);
         $category = Category::orderBy('name','ASC')
             ->get()
             ->pluck('name','id');
@@ -99,6 +101,15 @@ class ProductController extends Controller
         } else {
             return redirect()->route('products.index')->with('deleted',"No data found!");
         }
+    }
+    public function exportPDFAll(){
+        $products = Product::all();
+        $pdf = PDF::loadView('exportpdfs/productALLPDF',compact('products'));
+        return $pdf->download('Products.pdf');
+    }
+    public function exportExcel()
+    {
+        return (new ProductExport)->download('Products.xlsx');
     }
 
 
