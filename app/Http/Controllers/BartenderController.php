@@ -50,13 +50,13 @@ class BartenderController extends Controller
         }
     }
     public function exportPDFAll(){
-        $suppliers = Bartender::all();
-        $pdf = PDF::loadView('exportpdfs/supplierALLPDF',compact('suppliers'));
+        $bartender = Bartender::all();
+        $pdf = PDF::loadView('exportpdfs/supplierALLPDF',compact('bartenders'));
         return $pdf->download('Bartenders.pdf');
     }
     public function exportPDF($id){
-        $supplier = Bartender::findOrfail($id);
-        $pdf = PDF::loadView('exportpdfs/supplierPDF',compact('supplier'));
+        $bartender = Bartender::findOrfail($id);
+        $pdf = PDF::loadView('exportpdfs/supplierPDF',compact('bartender'));
         return $pdf->download('Bartender.pdf');
     }
     public function exportExcel()

@@ -7,6 +7,7 @@ use App\Exports\OutgoingProductExport;
 use App\Models\OutgoingProduct;
 use App\Models\Product;
 use App\Models\Bartender;
+use App\Models\Waitress;
 use Illuminate\Support\Facades\DB; // Add this line
 use Illuminate\Support\Facades\Log;
 use PDF;
@@ -17,10 +18,13 @@ class OutgoingProductController extends Controller
         $bartenders = Bartender::orderBy('name','ASC')
             ->get()
             ->pluck('name','id');
+        $waitresses = Waitress::orderBy('name','ASC')
+            ->get()
+            ->pluck('name','id');
         $products = Product::orderBy('name','ASC')
             ->get()
             ->pluck('name','id');
-        return view('admin.outgoingproducts', compact('outgoingproducts','products','bartenders'));
+        return view('admin.outgoingproducts', compact('outgoingproducts','products','bartenders','waitresses'));
     }
 
     public function store(Request $request)
@@ -31,6 +35,7 @@ class OutgoingProductController extends Controller
             'product_id' => 'required|exists:products,id',
             'bartender_id' => 'required|exists:bartenders,id',
             'qty' => 'required|integer|min:1',
+            'ld_qty' => 'nullable|integer|min:1',
             'date' => 'required|date',
         ]);
 
@@ -54,10 +59,13 @@ class OutgoingProductController extends Controller
             $outgoing->bartender_id = $request->bartender_id;
             $outgoing->qty = $request->qty;
             $outgoing->date = $request->date;
+            $outgoing->waitress_id = $request->waitress_id;
+            $outgoing->ld_qty = $request->ld_qty;
             $outgoing->save();
 
             // Update the product's quantity.
-            $product->qty -= $request->qty;
+            $totalqty = $request->qt + $request->ld_qty;
+            $product->qty -= $totalqty;
             $product->save();
 
             // Commit the transaction.

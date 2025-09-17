@@ -8,6 +8,7 @@ use App\Http\Controllers\OutgoingProductController;
 use App\Http\Controllers\IncomingProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WaitressController;
 Route::get('/', function () {
     return redirect()->route('home');
 });
@@ -75,6 +76,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('incomingproducts/exportPDF/{id}',[IncomingProductController::class,'exportPDF'])->name('incomingproducts.exportPDF');
         Route::get('incomingproducts/exportExcel',[IncomingProductController::class,'exportExcel'])->name('incomingproducts.exportExcel');
 
+        
+        Route::get('waitress',[WaitressController::class,'index'])->name('waitress.index');
+        Route::post('waitress',[WaitressController::class,'store'])->name('waitress.store');
+        Route::put('waitress/{id}',[WaitressController::class,'update'])->name('waitress.update');
+        Route::delete('waitress/{id}',[WaitressController::class,'delete'])->name('waitress.delete');
+        Route::get('waitress/exportPDFAll',[WaitressController::class,'exportPDFAll'])->name('waitress.exportPDFAll');
+        Route::get('waitress/exportExcel',[WaitressController::class,'exportExcel'])->name('waitress.exportExcel');
+
+        Route::get('ladiesdrinks',[WaitressController::class,'ladiesdrinks'])->name('ladiesdrinks.index');
+        Route::get('ladiesdrinks/exportPDFAll',[WaitressController::class,'ld_exportPDFAll'])->name('ladiesdrinks.exportPDFAll');
+        Route::get('ladiesdrinks/exportPDF/{id}',[WaitressController::class,'ld_exportPDF'])->name('ladiesdrinks.exportPDF');
+        Route::get('ladiesdrinks/exportExcel',[WaitressController::class,'ld_exportExcel'])->name('ladiesdrinks.exportExcel');
     });
 });
 

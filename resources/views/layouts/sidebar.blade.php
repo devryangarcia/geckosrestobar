@@ -44,6 +44,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('waitress.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-users"></i>
+                        <p>Waitress</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('suppliers.index') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-truck"></i>
                         <p>Supplier</p>
@@ -59,6 +65,12 @@
                     <a href="{{ route('incomingproducts.index') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-cart-plus"></i>
                         <p>Purchase Products</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('ladiesdrinks.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-martini-glass-citrus"></i>
+                        <p>Ladies Drinks</p>
                     </a>
                 </li>
                 @if (Auth::user()->role == 'admin')

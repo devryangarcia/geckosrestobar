@@ -80,11 +80,32 @@
                                             @error('bartender_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
+                                            
+                                            <div class="form-group">
+                                                <label for="waitress_id">Waitress</label>
+                                                <select name="waitress_id" class="form-control" id="waitress_id">
+                                                    <option value="" selected>None</option>
+                                                    @foreach ($waitresses as $id => $name)
+                                                        <option value="{{ $id }}">{{ $name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('waitress_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                             <div class="form-group">
                                                 <label for="qty">Quantity</label>
                                                 <input type="number" name="qty" class="form-control" id="qty">
                                             </div>
                                             @error('qty')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                            
+                                            <div class="form-group">
+                                                <label for="ld_qty">Ladies Drink Quantity</label>
+                                                <input type="number" name="ld_qty" class="form-control" id="qtld_qtyy">
+                                            </div>
+                                            @error('ld_qty')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <div class="form-group">
@@ -114,6 +135,8 @@
                                     <th>Products</th>
                                     <th>Bartenders</th>
                                     <th>Qty</th>
+                                    <th>Waitress</th>
+                                    <th>LD Qty</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -125,6 +148,8 @@
                                         <td>{{ $outgoingprod->product->name }}</td>
                                         <td>{{ $outgoingprod->bartender->name }}</td>
                                         <td>{{ $outgoingprod->qty }}</td>
+                                        <td>{{ $outgoingprod->waitress->name }}</td>
+                                        <td>{{ $outgoingprod->ld_qty }}</td>
                                         <td>{{ $outgoingprod->date }}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
@@ -328,11 +353,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Check if there are validation errors and show the modal
-            @if ($errors->any())
-                $('#addOutgoingProductModal').modal('show');
-            @endif
-
+            
             // Initialize DataTable only if you are not using server-side pagination
             // Since you have Laravel pagination, it's better to disable DataTables features
             // that conflict with it. The `searching`, `paging`, and `info` options are
