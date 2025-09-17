@@ -81,7 +81,7 @@
                     <p>Supplier</p>
                 </div>
                 <i class="small-box-icon fa-solid fa-signal-bars"></i>
-                <a href="#"
+                <a href="{{ route('suppliers.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
                     More info <i class="bi bi-link-45deg"></i>
                 </a>
@@ -97,7 +97,7 @@
                     <p>Total Purchase</p>
                 </div>
                 <i class="small-box-icon fa-solid fa-cart-plus"></i>
-                <a href="#"
+                <a href="{{ route('incomingproducts.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
                     More info <i class="bi bi-link-45deg"></i>
                 </a>
@@ -113,7 +113,23 @@
                     <p>Total Outgoing</p>
                 </div>
                 <i class="small-box-icon fa-solid fa-box-open"></i>
-                <a href="#"
+                <a href="{{ route('outgoingproducts.index') }}"
+                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
+                    More info <i class="bi bi-link-45deg"></i>
+                </a>
+            </div>
+            <!--end::Small Box Widget 1-->
+        </div>
+        <!--end::Col-->
+        <div class="col-lg-3 col-6">
+            <!--begin::Small Box Widget 1-->
+            <div class="small-box text-bg-primary">
+                <div class="inner">
+                    
+                    <p>Ladies Drinks</p>
+                </div>
+                <i class="small-box-icon fa-solid fa-box-open"></i>
+                <a href="{{ route('ladiesdrinks.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
                     More info <i class="bi bi-link-45deg"></i>
                 </a>
