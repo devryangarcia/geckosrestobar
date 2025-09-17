@@ -125,7 +125,7 @@
             <!--begin::Small Box Widget 1-->
             <div class="small-box text-bg-primary">
                 <div class="inner">
-                    
+                    <h3>--</h3>
                     <p>Ladies Drinks</p>
                 </div>
                 <i class="small-box-icon fa-solid fa-box-open"></i>
