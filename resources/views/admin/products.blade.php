@@ -34,21 +34,34 @@
                     <div class="card-body">
 
 
-                        <!-- Action Buttons -->
-                        <div class="mb-3 mt-2">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#addproducts">
-                                <i class="fa-solid fa-plus"></i> Add Products
-                            </button>
-                            <a href="{{ route('products.exportPDFAll') }}" target="_blank"
-                                rel="noopener noreferrer"class="btn btn-danger">
-                                <i class="fa fa-download"></i> Export PDF
-                            </a>
-                            <a href="{{ route('products.exportExcel') }}" target="_blank" rel="noopener noreferrer"class="btn btn-primary">
-                                <i class="fa fa-download"></i> Export Excel
-                            </a>
+                        <!-- Action Buttons + Search -->
+                        <div class="d-flex justify-content-between mb-3 mt-2">
+                            <!-- Left side: Action Buttons -->
+                            <div>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#addproducts">
+                                    <i class="fa-solid fa-plus"></i> Add Products
+                                </button>
+                                <a href="{{ route('products.exportPDFAll') }}" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-danger">
+                                    <i class="fa fa-download"></i> Export PDF
+                                </a>
+                                <a href="{{ route('products.exportExcel') }}" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-primary">
+                                    <i class="fa fa-download"></i> Export Excel
+                                </a>
+                            </div>
 
+                            <!-- Right side: Search Form -->
+                            <div>
+                                <form class="d-flex" method="GET" action="{{ route('products.index') }}">
+                                    <input class="form-control me-2" type="text" name="search"
+                                        value="{{ request('search') }}" placeholder="Search products...">
+                                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                                </form>
+                            </div>
                         </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="addproducts" tabindex="-1" aria-labelledby="addproductsLabel"
                             aria-hidden="true">
@@ -145,8 +158,8 @@
                                                 aria-labelledby="editproductsLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <form action="{{ route('products.update',$product->id) }}" method="post"
-                                                            enctype="multipart/form-data">
+                                                        <form action="{{ route('products.update', $product->id) }}"
+                                                            method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             @method('put')
                                                             <div class="modal-header">
@@ -205,7 +218,8 @@
                                                                     <label for="category_id">Category</label>
                                                                     <select name="category_id" id="category_id"
                                                                         class="form-control select" required>
-                                                                        <option value="" disabled>-- Choose Category --
+                                                                        <option value="" disabled>-- Choose Category
+                                                                            --
                                                                         </option>
                                                                         @foreach ($category as $id => $name)
                                                                             <option @selected($product->category->id == $id)
@@ -234,21 +248,24 @@
                                                 <i class="fas fa-trash"></i> Delete
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deleteproducts-{{ $product->id }}" tabindex="-1"
-                                                aria-labelledby="addproductLabel" aria-hidden="true">
+                                            <div class="modal fade" id="deleteproducts-{{ $product->id }}"
+                                                tabindex="-1" aria-labelledby="addproductLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-md">
                                                     <div class="modal-content">
-                                                        <form action="{{ route('products.delete',$product->id) }}" method="post">
+                                                        <form action="{{ route('products.delete', $product->id) }}"
+                                                            method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title" id="editproductLabel">Delete product
+                                                                <h4 class="modal-title" id="editproductLabel">Delete
+                                                                    product
                                                                 </h4>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <h4 class="text-danger">Are you sure to delete the record?</h4>
+                                                                <h4 class="text-danger">Are you sure to delete the record?
+                                                                </h4>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary me-auto"
@@ -300,7 +317,4 @@
             }
         });
     </script>
-    
-
-       
 @endsection

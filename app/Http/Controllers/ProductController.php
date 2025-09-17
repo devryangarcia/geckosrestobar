@@ -10,13 +10,21 @@ use Storage;
 use PDF;
 class ProductController extends Controller
 {
-    public function index(){
-        $products = Product::paginate(10);
-        $category = Category::orderBy('name','ASC')
+    public function index(Request $request){
+        $search = $request->input('search');
+
+        $products = Product::query()
+            ->when($search, function($query, $search) {
+                $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(10) // keep pagination
+            ->withQueryString(); // keep search in pagination links
+
+        $category = Category::orderBy('name', 'ASC')
             ->get()
             ->pluck('name','id');
 
-        return view('admin.products', compact('products','category'));
+        return view('admin.products', compact('products','category', 'search'));
     }
     public function store(Request $request)
     {
